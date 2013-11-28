@@ -19,12 +19,13 @@ addressed to phonenumber@your.domain to the script
 
     * in /etc/postfix/master.cf
 
-        transport_rule_name:	unix -	n	n	-	-	pipe
+                transport_rule_name: unix -  n  n  -  -  pipe
+
                 flags=F user=smsd argv=/path/to/your/script
 
     * in /etc/postfix/transport
 
-        your.domain	transport_rule_name:
+                your.domain transport_rule_name:
 
 There you go! Every mail sent to addresses like phonenumber@your.domain
 should be sent to the phonenumber-part of the address.
