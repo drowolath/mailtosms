@@ -2,6 +2,9 @@
 #!/usr/bin/env python
 
 import sys
+import pwd
+import grp
+import os
 import tempfile
 
 from email.parser import Parser
@@ -34,3 +37,8 @@ if __name__ == '__main__':
                           )
     with open(tmp[1],'w') as f:
         f.write(sms)
+
+    uid = pwd.getpwnam('smsd').pw_uid
+    gid = grp.getgrnam('smsd').gr_gid
+
+    os.chown(tmp[1], uid, gid)
